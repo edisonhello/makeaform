@@ -2,14 +2,22 @@
 
 var path = require('path');
 var express = require('express');
+var bodyParser = require('body-parser');
 
 var app=express();
+app.use(bodyParser.urlencoded({extended: true}));
 
-app.use(express.static('static'));
+app.get('/add.html',function(req,res){
+    res.sendFile(__dirname+'/form.html',function(){res.end();})
+});
+app.get('/',function(req,res){
+    res.sendFile(__dirname+'/index.html',function(){res.end();})
+});
 
 app.post('/',function(req,res){
-    res.sendFile(path.join(__dirname,'index.html'),function(){
-        res.end();});});
+    res.send(req.body);
+    res.end();  
+});
 
 
 
