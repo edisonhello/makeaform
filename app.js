@@ -15,17 +15,23 @@ app.get('/',function(req,res){
 });
 
 app.post('/',function(req,res){
+  console.log("got post");
 	if(req.body.pass!=req.body.pass2){
-		res.sendFile(__dirname+'form_pass.html',function(){res.end()})
-		if(req.body.birth==""){
-   			res.sendFile(__dirname+'form_birth.html',function(){res.end()})
-   	   }else{
-   		res.sendFile(__dirname+'done.html',function(){res.end()})
+    console.log("pass q");
+		res.sendFile(__dirname+'/form_pass.html',function(){res.end();})
+  }
+  else{
+    if(req.body.birth==""){
+      console.log("bir q");
+        res.sendFile(__dirname+'/form_birth.html')
+        res.end();
+       }else{
+      console.log("no q");
+      res.sendFile(__dirname+'/done.html')
+      res.end();
        }
     }
-    else{
-    	res.sendFile(__dirname+'done.html',function(){res.end()}) 
-    }
+});
 
 app.get('/list',function(req,res){
 //    res.sendFile(__dirname+'/list.html',function(){res.end();})
